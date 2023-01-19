@@ -1,0 +1,8 @@
+SELECT r.naziv AS Naziv, 
+SUM(CASE WHEN r.reprezentacijaid = u.domacinid THEN u.golovadomacin ELSE u.golovagost END) AS GolovaDato,
+SUM(CASE WHEN r.reprezentacijaid = u.domacinid THEN u.golovagost ELSE u.golovadomacin END) AS GolovaPrimljeno,
+SUM(CASE WHEN r.reprezentacijaid = u.domacinid THEN u.golovadomacin ELSE u.golovagost END) 
+- SUM(CASE WHEN r.reprezentacijaid = u.domacinid THEN u.golovagost ELSE u.golovadomacin END) AS GolRazlika
+FROM reprezentacija r JOIN utakmica u ON (r.reprezentacijaid = u.domacinid OR r.reprezentacijaid = u.gostid)
+GROUP BY naziv
+ORDER BY GolRazlika

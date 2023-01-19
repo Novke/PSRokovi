@@ -1,0 +1,29 @@
+=== LOGIN OPERATIVNA MEMORIJA ===
+
+Ako vam daju da u bazi ne postoje korisnici koji se loguju, onda morate da:
+
+1. Napravite objekat Korisnika koji se loguje na sistem.
+
+2. Sve normalno radite na klijentskoj, ukucate username i password, saljete klijentski zahtev, serverski odgovor vam je taj korisnik itd.
+
+3. Obrada klijentskih zahteva je ista.
+
+4. Ono sto se razlikuje je kontroler. ON NE SALJE DBBROKERU SADA JER U BAZI NEMATE KORISNIKE!
+
+   Ono sto treba da uradite jeste da:
+
+	a) Napravite globalnu varijablu ArrayList<Korisnik> korisnici = new ArrayList<>();
+
+	b) U konstruktoru kontrolera dodate 2, 3 korisnika:
+		korisnici.add(new Korisnik(1, 'Ivana', 'Ivanovic', 'ivana', 'ivana123'));
+		itd.
+
+	c) U login metodi koju ste napravili u kontroleru (tamo gde ide return dbb.login(username, password)):
+
+		for (Korisnik korisnik : korisnici){
+            		if(korisnik.getKorisnickoIme().equals(username) && korisnik.getLozinka().equals(password))
+                		return korisnik;
+        		}
+        	return null;
+
+=== LOGIN OPERATIVNA MEMORIJA ===

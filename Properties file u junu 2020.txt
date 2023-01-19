@@ -1,0 +1,24 @@
+
+=========== ARI ===========
+
+Treba da pošaljete klijentski zahtev serveru da vam vrati srednji kurs NBS koji se nalazi u properties fajlu na serveru.
+
+1. Desni klik na Server project -> New -> Properties file (ako ga nemate odmah tu, nađite ga u other)
+2. Napišete varijablu i date joj vrednost: SREDNJI_KURS_NBS = 117.5
+3. Napravite KZ na klijentu i pošaljete serveru
+4. U obradi KZ u operaciji SREDNJI_KURS napravite instancu Properties klase, učitate taj Properties fajl 
+   (ovo može da baci exception, pa surround with try-catch block uradite)
+5. Čitate vrednost srednjeg kursa preko instance Properties klase ( properties.getProperty(SREDNJI_KURS_NBS)),
+   to vam vraća String, pa parsujete u double i vratite odgovor.
+
+	Properties properties = new Properties();
+
+	try {
+ 	    properties.load(new FileInputStream("podesavanja.properties"));
+ 	   } catch (Exception ex) {
+ 	     Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	double kurs = Double.parseDouble(properties.getProperty("SREDNJI_KURS_NBS"));
+	so.setOdgovor(kurs);
+
+=========== ARI ===========

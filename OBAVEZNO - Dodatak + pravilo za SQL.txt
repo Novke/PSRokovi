@@ -1,0 +1,67 @@
+====== ARI ======
+
+******** AKO VAM SE DESI RUNTIME EXCEPTION, MORATE DA URADITE CLEAN AND BUILD TOG PROJEKTA NA KOME SE DESIO TAJ EXCEPTION. 
+	 IGNORISITE GRESKE KOJE CLEAN AND BUILD JAVLJA!
+
+== SETOVANJE KORISNIKA ZA LOGOVANJE U KONSTRUKTORU FORME ==
+
+1. U KONSTRUKTORU KLIJENTSKE FORME PROSLEDIMO KORISNIKA
+2. REDEFINISEMO KONSTRUKTOR, DODAMO KORISNIKA
+3. NAPRAVIMO GLOBALNU VARIJABLU KORISNIKA
+4. U KONSTRUKTORU NAPISEMO THIS.KORISNIK = KORISNIK
+5. OBRISEMO MAIN METODU JER NAM ONA NIJE POTREBNA 
+(POTREBNA JE SAMO ZA LOGIN FORMU, ONA KOJA SE PRVA OTVARA)
+
+== TIPOVI PODATAKA SQL - JAVA kad pravite klase ==
+INT - INT
+BIGINT - LONG
+TINYINT - BOOLEAN
+DECIMAL - DOUBLE
+VARCHAR - STRING
+DATE/DATETIME - DATE (java.util.Date)
+
+
+
+== Tipovi podataka za datume ==
+JAVA SQL DATE - SAMO DATUM
+JAVA SQL TIMESTAMP - DATUM I VREME
+JAVA UTIL DATE - SVE I DATUM I VREME I MILISEKUNDE I VREMENSKA ZONA ITD
+
+
+== Dodatak za SQL agregatne funkcije ==
+
+Imate 5 agregatnih funkcija, to su AVG, SUM, MIN, MAX, COUNT.
+
+Uvek kada imate agregatnu funkciju u SELECT-u pored nekih običnih kolona (koje nisu agregatne funkcije), 
+morate da grupišete po SVEMU što nije u agregatnoj funkciji. Na primer:
+
+SELECT X.KOLONA1, X.KOLONA2, MAX(KOLONA3) as MAX
+FROM TABELA X
+GROUP BY X.KOLONA1, X.KOLONA2
+
+Dakle grupisao sam po svemu što nije agregatna funkcija, odnosno po prvoj i drugoj koloni.
+
+Dalje, upit UVEK ide:
+SELECT
+FROM (pa neki join)
+WHERE
+GROUP BY
+HAVING 
+ORDER BY
+
+Order by UVEK ide na kraju! Sve moze da dodje u obzir, ne daju preteske upite 
+i do sada nikad nisu davali HAVING (uslov za grupe).
+
+*****
+BROJANJE PO USLOVU:
+Kada koristite funkciju COUNT, ona vam broji sve redove, bez obzira na sve.
+
+Ako brojite po uslovu, MORATE da koristite kombinaciju SUM i CASE, sablon:
+
+SUM(CASE WHEN *USLOV* THEN 1 ELSE 0 END) as nazivKolone
+
+Jedino sto se ovde menja kad brojite po uslovu je USLOV !
+*****
+
+====== ARI ======
+

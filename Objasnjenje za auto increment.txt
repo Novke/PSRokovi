@@ -1,0 +1,10 @@
+AUTO INCREMENT:
+
+U upitu pisemo u zagradi sve kolone osim ID-a (znaci prvu preskacemo), jer mi ubacujemo sve osim ID-a! (primeri jan2021/feb2021)
+
+U PreparedStatementu ps dodajemo kao parametar Statement.RETURN_GENERATED_KEYS samo kada nam je ID koji je kreirala baza potreban (primer feb2021)!
+
+Kada nam je potreban? Kada imamo slab objekat ili agregaciju (listu objekata koje cuvamo), a kada imamo samo jedan objekat
+onda nam NIJE potreban !!! (NIJE nam potreban u jan2021, a jeste u feb2021)
+
+(Kada imate listu objekata u 99.9% slucajeva ne treba Statement.RETURN_GENERATED_KEYS i one 3 linije za vracanje kljuca!)
